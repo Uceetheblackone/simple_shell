@@ -22,19 +22,19 @@ void printPrompt(void)
 */
 void executeCommand(char *command)
 {
+	char *args[] = {"command", NULL};
+	char *envp[] = {NULL};
 	pid_t pid = fork();
 
 	if (pid == -1)
 	{
 	perror("fork");
 	exit(EXIT_FAILURE);
-
 	}
 	else if (pid == 0)
 	{
-	execlp(command, command, NULL);
-	write(STDERR_FILENO, "#cisfun: No such file or directory: ", 38);
-	write(STDERR_FILENO, command, strlen(command));
+	execve(command, args, envp);
+	write(STDERR_FILENO, "./simple-shell: No such file or directory ", 42);
 	write(STDERR_FILENO, "\n", 1);
 	exit(EXIT_FAILURE);
 	}
