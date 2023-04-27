@@ -72,10 +72,12 @@ char **get_tokens(int nchars_read, char *lineptr, size_t *n, char **args)
 	nchars_read = getline(&lineptr, n, stdin);
 	if (nchars_read == -1)
 	{
+		write(STDOUT_FILENO, "Exiting shell ....\n", 20);
 		free(lineptr);
 		exit(errno);
+	
 	}
-
+	
 	args = malloc(MAX_ARGS * sizeof(char *));
 	if (args == NULL)
 	{
@@ -96,9 +98,12 @@ char **get_tokens(int nchars_read, char *lineptr, size_t *n, char **args)
 			break;
 		}
 	}
-	args[i] = NULL;
-	return (args);
-}
+	if (strcmp(args[0], "exit") == 0)
+	{
+	free(args);
+	free(lineptr);
+	return (0);
+	}
 
 /**
  * exec_cmd - execute command
