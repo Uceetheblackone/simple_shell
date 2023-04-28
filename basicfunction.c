@@ -1,4 +1,4 @@
-#include "header.h"
+#include "sshell.h"
 
 /**
  *_putchar - prints each character
@@ -47,12 +47,17 @@ char *_memset(char *s, char b, unsigned int n)
  *
  * Return: pointer to PATH member string or NULL if not found
  */
+
 char *_getenv(const char *name)
 {
 	int i, result;
 
 	for (i = 0; environ[i]; i++)
 	{
+	if (name == NULL || environ == NULL)
+          {
+                  return (NULL);
+          }
 		result = _strcmpPath(name, environ[i]);
 		if (result == 0)
 		{
@@ -67,11 +72,16 @@ char *_getenv(const char *name)
  *
  * Return: 0 on success
  */
+
+extern char **environ;
+
 int _env(void)
 {
 	int i;
-
+	
 	for (i = 0; environ[i]; i++)
+	{
 		_puts(environ[i]);
+	}
 	return (0);
 }

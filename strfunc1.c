@@ -1,4 +1,4 @@
-#include "header.h"
+#include "sshell.h"
 
 /**
  * _splitstring - counts number of words in string
