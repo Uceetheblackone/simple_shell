@@ -1,4 +1,4 @@
-#include "header.h"
+#include "sshell.h"
 
 /**
  * _strcomp - compares two strings

@@ -1,5 +1,5 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef SSHELL_H
+#define SSHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +13,7 @@
 #include <sys/time.h>
 
 extern char **environ;
-
+#define MAX_PATH_LENGTH 256
 #define clear() printf("\033[H\033[J")
 
 void init_shell(void);
@@ -26,14 +26,12 @@ int checkbuiltins(char **av, char *buffer, int exitstatus);
 int _forkprocess(char **av, char *buffer, char *pathbuffer);
 char **_strtoken(char *buffer);
 
-
 /* basic functions */
 int _putchar(char c);
 void _puts(char *str);
 char *_memset(char *s, char b, unsigned int n);
 char *_getenv(const char *name);
 int _env(void);
-
 
 /* string functions */
 int _strcomp(const char *s1, const char *s2);
@@ -49,7 +47,13 @@ int _splitPath(char *str);
 int _strcmpPath(const char *s1, const char *s2);
 char *_concat(char *tmp, char **av, char *tok);
 
+char *dup_chars(char *paths, int start, int stop);
+int is_cmd(char *mydata, char *paths);
+char *find_path(char *mydata, char *paths, char *cmd);
+char *starts_with(const char *, const char *);
+char *starts_with(const char *haystack, const char *needle);
+
+
 
 
 #endif
-
