@@ -54,10 +54,10 @@ char *_getenv(const char *name)
 
 	for (i = 0; environ[i]; i++)
 	{
-	if (name == NULL || environ == NULL)
-          {
-                  return (NULL);
-          }
+		if (name == NULL || environ == NULL)
+		{
+			return (NULL);
+		}
 		result = _strcmpPath(name, environ[i]);
 		if (result == 0)
 		{
@@ -72,13 +72,10 @@ char *_getenv(const char *name)
  *
  * Return: 0 on success
  */
-
-extern char **environ;
-
 int _env(void)
 {
 	int i;
-	
+
 	for (i = 0; environ[i]; i++)
 	{
 		_puts(environ[i]);
